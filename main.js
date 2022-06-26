@@ -61,22 +61,50 @@ const GAMEMASTER_WRITE = new ethers.Contract(addresses.GAMEMASTER, abis.GAMEMAST
 
 
 async function createWarrior(_to, _name, _class) {
-  await GAMEMASTER_WRITE.createWarrior(_to, _name. _class);
+  await GAMEMASTER_WRITE.createWarrior(_to, _name, _class);
 };
 
-let cardEl = document.querySelector(".warrior-card");
+let cardURI = await GAMEMASTER_READ.tokenURI(0);
+let cardData = await
+ fetch(cardURI)
+  .then(response => response.json())
+console.log(cardData)
+console.log(cardData["attributes"][0].value)
+let cardOBJ = {
+  image: "https://ipfs.io/ipfs/" + JSON.stringify(cardData.image).slice(8),
+  description: cardData["description"],
+  class: cardData["attributes"][0].value,
+  vitality: cardData["attributes"][1].value,
+  attack: cardData["attributes"][2].value,
+  luck: cardData["attributes"][3].value,
+}
+
+let cardEl = document.getElementById("warrior-card");
 cardEl.innerHTML = 
-`<div class="card" style="width: 18rem;">
-<img class="card-img-top" src="..." alt="Card image cap">
+`<div class="card" style="width: 12rem;">
+<img class="card-img-top" src="${cardOBJ.image}" alt="Your Mighty Hero">
 <div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <a href="#" class="btn btn-primary">Go somewhere</a>
+  <h5 class="card-text">${cardOBJ.class}</h5>
+  <p class="card-text">- Vitality: ${cardOBJ.vitality}</p>
+  <p class="card-text">- Attack: ${cardOBJ.attack}</p>
+  <p class="card-text">- Luck: ${cardOBJ.luck}</p>
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-primary btn-card">Prev</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary btn-card">Next</a>
+    </div>
+  </div>
 </div>
 </div>`
 
- let mapEl = document.querySelector(".town-map");
- mapEl.innerHTML = `<a class="btn btn-primary">Mint a Warrior!</a>`
+ let mapEl = document.getElementById("town-map");
+ mapEl.innerHTML = `<a id="mint-btn" class="btn btn-primary">Mint a Warrior!</a>`
+
+ document.getElementById("mint-btn").addEventListener("click", () => {
+  createWarrior(account, "Gabe", "warrior")
+ });
 
 };
 
