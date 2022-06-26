@@ -10,37 +10,54 @@
 </head>
 <body>
 
-    <div class="container-fluid">
+    <div class="container-fluid h-100">
 
-        <div class="row align-items-center">
-
-            <div class="col" id="warrior-card">
-            </div>
+        <div class="row align-items-center text-center">
             
+            <div class="col-4">
+
+            </div>
+
             <div class="col-4">
                 <h1>x-chain Arena</h1>
             </div>
 
             
-                <div class="col">
+                <div class="col mx-auto">
                     <span><strong>Connected Account:</strong></span>
                     <span id="selected-account"><br>none</span>
-                    <strong><span id="account-balance"></span></strong>
                     <br>
-                    <span class="badge bg-warning text-dark" id="network-name"><strong>not connected</strong></span>
+                    <strong><span id="account-balance"></span></strong>
+                    <div class="row">
+                
+                    <button id="network-name" class="col btn btn-primary bg-warning text-dark btn-sm px-4 me-sm-3 btn-wal">not connected</button>
+                    <button id="btn-connect" type="button" class="col btn btn-primary btn-sm px-4 me-sm-3 btn-wal">Connect Wallet</button>
+                    <button id="btn-disconnect" style="display:none" type="button" class="col btn btn-outline-secondary btn-sm px-4 btn-wal">Disconnect</button>
+                    </div>
                 </div>
-
-                <div class="col">
-                        <button id="btn-connect" type="button" class="btn btn-primary btn-lg px-4 me-sm-3 ">Connect Wallet</button>
-                        <button id="btn-disconnect" style="display:none" type="button" class="btn btn-outline-secondary btn-lg px-4">Disconnect</button>
-                </div>  
 
         </div>
 
         <div class="row">
-            <div class="col" id="town-map"> </div>
+            <div class="col text-center" id="town-map"> </div>
+            <div class="col"> </div>
+            <div class="col"> </div>
+            <div class="col"> </div>
+        </div>
+        
+        <div class="row">
+            <div class="col" id="town-map2"> </div>
+            <div class="col"> </div>
+            <div class="col"> </div>
+            <div class="col"> </div>
         </div>
 
+        <div class="row align-items-center ">
+
+            <div class="col-4 justify-content-left" id="warrior-card">
+            </div>
+            
+        </div>
     </div>
 
    

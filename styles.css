@@ -1,8 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     background-image: url("./images/medievalVillage.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 
 h1 {
     text-align: center;
@@ -16,3 +22,15 @@ h1 {
 .btn-card {
     margin-top: 20px;
 }
+.btn-wal {
+    margin: 0px 20px;
+}
+
+#mint-btn {
+    margin: 100px 0;
+}
+
+#warrior-card {
+    margin-left: 20px;
+}
+
