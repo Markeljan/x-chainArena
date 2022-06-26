@@ -9,9 +9,16 @@ body {
     background-repeat: no-repeat;
 }
 
+.toprowdiv {
+    padding-top: 0px;
+}
 
-h1 {
+.title-text {
+    font-family: "Cinzel Decorative";
     text-align: center;
+    font-size: 96px;
+    color: rgb(232, 190, 0);
+    text-shadow: 10px 1px 10px #fff, 1px 1px 10px #ccc;
 }
 
 .card-text {
@@ -26,7 +33,7 @@ h1 {
     margin: 0px 20px;
 }
 
-#mint-btn {
+.map-btn {
     margin: 100px 0;
 }
 

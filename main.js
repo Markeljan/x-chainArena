@@ -99,15 +99,15 @@ cardEl.innerHTML =
 </div>
 </div>`
 
-let mapEl = document.getElementById("town-map");
-mapEl.innerHTML += `<a id="mint-btn" class="btn btn-primary">Mint a Warrior!</a>`
+let mapEl = document.getElementById("town-map0");
+mapEl.innerHTML += `<a id="mint-btn" class="btn btn-primary map-btn">Mint a Warrior!</a>`
 
 document.getElementById("mint-btn").addEventListener("click", () => {
 createWarrior(account, "Gabe", "warrior")
 });
 
 
-mapEl.innerHTML += `<a id="arena-btn" class="btn btn-primary">Fight in the Arena!</a>`
+mapEl.innerHTML += `<a id="arena-btn" class="btn btn-primary map-btn">Fight in the Arena!</a>`
 
 };
 
