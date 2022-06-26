@@ -1,11 +1,11 @@
 addresses = {
-          WARRIOR_MINTER: "0xd7510aCf01865F38d4abbEa894374894b73820A7",
+          GAMEMASTER: "0x43A9fEA681b1D6C091eA8a025cb54e62F79B8C3B",
 
 
 }
 
 abis = {
-     WARRIOR_MINTER: [
+     GAMEMASTER: [
           {
                "inputs": [],
                "stateMutability": "nonpayable",
@@ -62,6 +62,47 @@ abis = {
                "type": "event"
           },
           {
+               "inputs": [
+                    {
+                         "internalType": "address",
+                         "name": "to",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "tokenId",
+                         "type": "uint256"
+                    }
+               ],
+               "name": "approve",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
+          },
+          {
+               "inputs": [
+                    {
+                         "internalType": "address",
+                         "name": "_to",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "string",
+                         "name": "_name",
+                         "type": "string"
+                    },
+                    {
+                         "internalType": "string",
+                         "name": "_class",
+                         "type": "string"
+                    }
+               ],
+               "name": "createWarrior",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
+          },
+          {
                "anonymous": false,
                "inputs": [
                     {
@@ -79,6 +120,82 @@ abis = {
                ],
                "name": "OwnershipTransferred",
                "type": "event"
+          },
+          {
+               "inputs": [],
+               "name": "renounceOwnership",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
+          },
+          {
+               "inputs": [
+                    {
+                         "internalType": "address",
+                         "name": "from",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "address",
+                         "name": "to",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "tokenId",
+                         "type": "uint256"
+                    }
+               ],
+               "name": "safeTransferFrom",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
+          },
+          {
+               "inputs": [
+                    {
+                         "internalType": "address",
+                         "name": "from",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "address",
+                         "name": "to",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "tokenId",
+                         "type": "uint256"
+                    },
+                    {
+                         "internalType": "bytes",
+                         "name": "_data",
+                         "type": "bytes"
+                    }
+               ],
+               "name": "safeTransferFrom",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
+          },
+          {
+               "inputs": [
+                    {
+                         "internalType": "address",
+                         "name": "operator",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "bool",
+                         "name": "approved",
+                         "type": "bool"
+                    }
+               ],
+               "name": "setApprovalForAll",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
           },
           {
                "anonymous": false,
@@ -109,6 +226,11 @@ abis = {
                "inputs": [
                     {
                          "internalType": "address",
+                         "name": "from",
+                         "type": "address"
+                    },
+                    {
+                         "internalType": "address",
                          "name": "to",
                          "type": "address"
                     },
@@ -118,7 +240,20 @@ abis = {
                          "type": "uint256"
                     }
                ],
-               "name": "approve",
+               "name": "transferFrom",
+               "outputs": [],
+               "stateMutability": "nonpayable",
+               "type": "function"
+          },
+          {
+               "inputs": [
+                    {
+                         "internalType": "address",
+                         "name": "newOwner",
+                         "type": "address"
+                    }
+               ],
+               "name": "transferOwnership",
                "outputs": [],
                "stateMutability": "nonpayable",
                "type": "function"
@@ -137,6 +272,56 @@ abis = {
                          "internalType": "uint256",
                          "name": "",
                          "type": "uint256"
+                    }
+               ],
+               "stateMutability": "view",
+               "type": "function"
+          },
+          {
+               "inputs": [],
+               "name": "fetchWarriors",
+               "outputs": [
+                    {
+                         "components": [
+                              {
+                                   "internalType": "string",
+                                   "name": "name",
+                                   "type": "string"
+                              },
+                              {
+                                   "internalType": "string",
+                                   "name": "class",
+                                   "type": "string"
+                              },
+                              {
+                                   "internalType": "uint256",
+                                   "name": "vitality",
+                                   "type": "uint256"
+                              },
+                              {
+                                   "internalType": "uint256",
+                                   "name": "attack",
+                                   "type": "uint256"
+                              },
+                              {
+                                   "internalType": "uint256",
+                                   "name": "luck",
+                                   "type": "uint256"
+                              },
+                              {
+                                   "internalType": "uint256",
+                                   "name": "victories",
+                                   "type": "uint256"
+                              },
+                              {
+                                   "internalType": "bool",
+                                   "name": "alive",
+                                   "type": "bool"
+                              }
+                         ],
+                         "internalType": "struct GameMaster.Warrior[]",
+                         "name": "",
+                         "type": "tuple[]"
                     }
                ],
                "stateMutability": "view",
@@ -231,100 +416,6 @@ abis = {
                "type": "function"
           },
           {
-               "inputs": [],
-               "name": "renounceOwnership",
-               "outputs": [],
-               "stateMutability": "nonpayable",
-               "type": "function"
-          },
-          {
-               "inputs": [
-                    {
-                         "internalType": "address",
-                         "name": "to",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "uint256",
-                         "name": "_class",
-                         "type": "uint256"
-                    }
-               ],
-               "name": "safeMint",
-               "outputs": [],
-               "stateMutability": "nonpayable",
-               "type": "function"
-          },
-          {
-               "inputs": [
-                    {
-                         "internalType": "address",
-                         "name": "from",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "address",
-                         "name": "to",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "uint256",
-                         "name": "tokenId",
-                         "type": "uint256"
-                    }
-               ],
-               "name": "safeTransferFrom",
-               "outputs": [],
-               "stateMutability": "nonpayable",
-               "type": "function"
-          },
-          {
-               "inputs": [
-                    {
-                         "internalType": "address",
-                         "name": "from",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "address",
-                         "name": "to",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "uint256",
-                         "name": "tokenId",
-                         "type": "uint256"
-                    },
-                    {
-                         "internalType": "bytes",
-                         "name": "_data",
-                         "type": "bytes"
-                    }
-               ],
-               "name": "safeTransferFrom",
-               "outputs": [],
-               "stateMutability": "nonpayable",
-               "type": "function"
-          },
-          {
-               "inputs": [
-                    {
-                         "internalType": "address",
-                         "name": "operator",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "bool",
-                         "name": "approved",
-                         "type": "bool"
-                    }
-               ],
-               "name": "setApprovalForAll",
-               "outputs": [],
-               "stateMutability": "nonpayable",
-               "type": "function"
-          },
-          {
                "inputs": [
                     {
                          "internalType": "bytes4",
@@ -378,37 +469,50 @@ abis = {
           {
                "inputs": [
                     {
-                         "internalType": "address",
-                         "name": "from",
-                         "type": "address"
-                    },
-                    {
-                         "internalType": "address",
-                         "name": "to",
-                         "type": "address"
-                    },
-                    {
                          "internalType": "uint256",
-                         "name": "tokenId",
+                         "name": "",
                          "type": "uint256"
                     }
                ],
-               "name": "transferFrom",
-               "outputs": [],
-               "stateMutability": "nonpayable",
-               "type": "function"
-          },
-          {
-               "inputs": [
+               "name": "warriors",
+               "outputs": [
                     {
-                         "internalType": "address",
-                         "name": "newOwner",
-                         "type": "address"
+                         "internalType": "string",
+                         "name": "name",
+                         "type": "string"
+                    },
+                    {
+                         "internalType": "string",
+                         "name": "class",
+                         "type": "string"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "vitality",
+                         "type": "uint256"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "attack",
+                         "type": "uint256"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "luck",
+                         "type": "uint256"
+                    },
+                    {
+                         "internalType": "uint256",
+                         "name": "victories",
+                         "type": "uint256"
+                    },
+                    {
+                         "internalType": "bool",
+                         "name": "alive",
+                         "type": "bool"
                     }
                ],
-               "name": "transferOwnership",
-               "outputs": [],
-               "stateMutability": "nonpayable",
+               "stateMutability": "view",
                "type": "function"
           }
      ],

@@ -56,10 +56,27 @@ ethereum.on("chainChanged", (chainId) => {
 ///MAIN FUNCTIONS///
 ////////////////////
 
-let WARRIOR_MINTER = new ethers.Contract(addresses.WARRIOR_MINTER, abis.WARRIOR_MINTER, signer);
+const GAMEMASTER_READ = new ethers.Contract(addresses.GAMEMASTER, abis.GAMEMASTER, provider);
+const GAMEMASTER_WRITE = new ethers.Contract(addresses.GAMEMASTER, abis.GAMEMASTER, signer);
 
 
-//await WARRIOR_MINTER.safeMint(account, 2);
+async function createWarrior(_to, _name, _class) {
+  await GAMEMASTER_WRITE.createWarrior(_to, _name. _class);
+};
+
+let cardEl = document.querySelector(".warrior-card");
+cardEl.innerHTML = 
+`<div class="card" style="width: 18rem;">
+<img class="card-img-top" src="..." alt="Card image cap">
+<div class="card-body">
+  <h5 class="card-title">Card title</h5>
+  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <a href="#" class="btn btn-primary">Go somewhere</a>
+</div>
+</div>`
+
+ let mapEl = document.querySelector(".town-map");
+ mapEl.innerHTML = `<a class="btn btn-primary">Mint a Warrior!</a>`
 
 };
 

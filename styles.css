@@ -2,10 +2,12 @@ body {
     background-image: url("./images/medievalVillage.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;
 }
 
 .header {
     display: flex;
     margin: 20px auto;
-    width: 60%;
+    width: 80%;
 }

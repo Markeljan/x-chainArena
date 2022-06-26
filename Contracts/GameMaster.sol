@@ -14,13 +14,12 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable{
     constructor() ERC721("x-chain Arena", "xArena") {}
 
     struct Warrior {
-        address owner;
-        uint256 tokenId;
         string name;
         string class;
         uint256 vitality;
         uint256 attack;
         uint256 luck;
+        uint256 victories;
         bool alive;
     }
     
@@ -37,7 +36,7 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable{
         return "https://ipfs.io/ipfs/bafybeibgsbmvafuq5xchnpydd5ypdg4rrpbu5dy6rjdiou7v6m3ons5ega/newMD";
     }
 
-    function safeMintWarrior(address _to, string memory _name, string memory _class) public {
+    function createWarrior(address _to, string memory _name, string memory _class) public {
         //parse class to available URI classId's
         bytes32 classEncoded = keccak256(abi.encodePacked(_class));
         uint256 classId;
@@ -53,7 +52,7 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable{
         _setTokenURI(tokenId, classIdString);
         
         //Modify base stats here for chain-dependent bonuses
-        Warrior memory newWarrior = Warrior(_to, tokenId, _name, _class, 10, 1, 0, true);
+        Warrior memory newWarrior = Warrior(_name, _class, 10, 1, 0, 0, true);
         warriors.push(newWarrior);
        
     }
@@ -63,12 +62,11 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable{
 
         uint256 newIndex = 0;
         for(uint256 i = 0; i < warriors.length; i++) {
-            if( warriors[i].owner != msg.sender ) continue;
+            if( ownerOf(i) != msg.sender ) continue;
             ownedWarriors[newIndex] = warriors[i];
             newIndex++;
         }
             return ownedWarriors;
-
     }
 
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
