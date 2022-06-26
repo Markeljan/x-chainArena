@@ -110,6 +110,19 @@ cardEl.innerHTML =
 </div>
 </div>`
 
+
+document.getElementById("next-btn").addEventListener("click", () => {
+  if(currentDraw < userWarriors.length - 1) {
+    currentDraw++;
+    drawCard();
+  }});
+
+document.getElementById("prev-btn").addEventListener("click", () => {
+  if(currentDraw > 0) {
+    currentDraw--;
+    drawCard();
+  }});
+
 }
 
 
@@ -141,19 +154,6 @@ document.getElementById("mint-ranger").addEventListener("click", () => {
 document.getElementById("mint-wizard").addEventListener("click", () => {
   createWarrior(account, getRandomName(), "wizard")});
 
-document.getElementById("next-btn").addEventListener("click", () => {
-  if(currentDraw <= userWarriors.length) {
-    console.log(currentDraw, userWarriors.length)
-    currentDraw++;
-    drawCard()
-    console.log(currentDraw)
-  }});
-document.getElementById("prev-btn").addEventListener("click", () => {
-  if(currentDraw >= 0) {
-    currentDraw--;
-    drawCard()
-    console.log(currentDraw)
-  }});
 
 
 
