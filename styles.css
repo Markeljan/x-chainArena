@@ -16,6 +16,9 @@ body {
     color: rgb(232, 190, 0);
     text-shadow: 10px 1px 10px #fff, 1px 1px 10px #ccc;
 }
+.hide {
+    display: none;
+}
 
 .card-text {
     margin: 0;
@@ -31,6 +34,9 @@ body {
 
 .map-btn {
     margin: 100px 0;
+}
+.row2 {
+    padding-top: 40px;
 }
 
 .map-btn2 {
