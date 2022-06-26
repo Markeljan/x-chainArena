@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract GameMaster is ERC721, ERC721URIStorage, Ownable {
+contract GameMaster is ERC721, ERC721URIStorage, Ownable, IERC721Receiver {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
 
@@ -22,13 +22,14 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable {
         int256 attack;
         uint256 luck;
         uint256 victories;
+        bool inArena;
         bool alive;
     }
     
     Warrior[] public warriors;
 
     mapping(uint256 => Warrior) tokenIdToWarrior;
-    mapping(uint256 => address) tokenIdToPrevOwner;
+    mapping(uint256 => address) public tokenIdToPrevOwner;
     uint public arenaCount = 0;
     uint[] public activeCombatents;
 
@@ -60,7 +61,7 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, classIdString);
         
         //Modify base stats here for chain-dependent bonuses
-        Warrior memory newWarrior = Warrior(tokenId, _name, _class, 10, 1, 0, 0, true);
+        Warrior memory newWarrior = Warrior(tokenId, _name, _class, 10, 1, 0, 0, false, true);
         warriors.push(newWarrior);
         tokenIdToWarrior[tokenId] = newWarrior;
        
@@ -78,48 +79,54 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable {
             return ownedWarriors;
     }
     
-    function enterArena(uint256 _tokenId) public payable {
-        require(ownerOf(_tokenId) == msg.sender, "You are not the owner of that warrior");
-        require( arenaCount <= 1, "Arena is Full!");
-        safeTransferFrom(msg.sender,address(this), _tokenId);
-        tokenIdToPrevOwner[_tokenId] = msg.sender;
+    function enterArena(uint256 _tokenId) public{
+       // require(ownerOf(_tokenId) == msg.sender, "You are not the owner");
+       // require(!tokenIdToWarrior[_tokenId].inArena, "Already in Arena!");
+        //require( arenaCount <= 1, "Arena is Full!");
         arenaCount ++;
+        tokenIdToWarrior[_tokenId].inArena = true;
         
         if(arenaCount == 1) {
             activeCombatents[0] = _tokenId;
         }
         if(arenaCount == 2) {
             activeCombatents[1] = _tokenId;
-            startArena();
+            //startArena();
         }
     }
 
-    function startArena() public returns (string memory){
-        Warrior memory char1 = tokenIdToWarrior[activeCombatents[0]];
-        Warrior memory char2 = tokenIdToWarrior[activeCombatents[1]];
-        uint256 randomNum = uint256(keccak256(abi.encodePacked(block.timestamp, tokenIdToPrevOwner[0])));
-        randomNum = randomNum % 100 + 1;
-            if (randomNum >=  (50 - char1.luck)) { 
-                char1.vitality --;
-            } else {
-                char2.vitality --;
-            }
-        for(uint256 i = 0; i < 5; i++ ) {
-            char1.vitality -= char2.attack;
-            emit BattleTurn(char1.tokenId, char1.vitality);
-            char2.vitality -= char1.attack;
-            emit BattleTurn(char2.tokenId, char2.vitality);
-        }    
-        if(char1.vitality - char2.vitality == 0)
-        return("draw");
-        else {
-            if(char1.vitality - char2.vitality > 0 )
-        return("char1 wins!");
-        else {
-        return("char2 wins!");
-        }
-        }
-    }
+    // function startArena() private{
+    //     Warrior memory char1 = tokenIdToWarrior[activeCombatents[0]];
+    //     Warrior memory char2 = tokenIdToWarrior[activeCombatents[1]];
+    //     uint256 randomNum = uint256(keccak256(abi.encodePacked(block.timestamp, tokenIdToPrevOwner[0])));
+    //     randomNum = randomNum % 100 + 1;
+    //         if (randomNum >=  (50 - char1.luck)) { 
+    //             char1.vitality --;
+    //         } else {
+    //             char2.vitality --;
+    //         }
+    //     for(uint256 i = 0; i < 5; i++ ) {
+    //         char1.vitality -= char2.attack;
+    //         emit BattleTurn(char1.tokenId, char1.vitality);
+    //         char2.vitality -= char1.attack;
+    //         emit BattleTurn(char2.tokenId, char2.vitality);
+    //     }
+    //     tokenIdToWarrior[activeCombatents[0]].inArena = false;
+    //     tokenIdToWarrior[activeCombatents[1]].inArena = false;    
+    //   // if(char1.vitality - char2.vitality == 0){
+    //    // return("draw");
+    //    // }
+    //  //   else {
+    //         if(char1.vitality - char2.vitality > 0 ) {
+    //          tokenIdToWarrior[activeCombatents[0]].victories++;    
+    //       //   return("char1 wins!");
+    //         }
+    //     else {
+    //          tokenIdToWarrior[activeCombatents[1]].victories++;    
+    //        //  return("char2 wins!");
+    //         }
+    //     }
+    // }
 
   
 
@@ -135,6 +142,17 @@ contract GameMaster is ERC721, ERC721URIStorage, Ownable {
         returns (string memory)
     {
         return super.tokenURI(tokenId);
+    }
+
+    function onERC721Received(
+        address one,
+        address two, 
+        uint256 id,
+        bytes memory
+    ) public virtual override returns (bytes4) {
+        tokenIdToPrevOwner[id] = one;
+        enterArena(id);
+        return this.onERC721Received.selector;
     }
 
     function getOnERC721RecievedSelector() pure public returns (bytes4) {

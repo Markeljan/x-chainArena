@@ -55,9 +55,12 @@ ethereum.on("chainChanged", (chainId) => {
 ////////////////////
 ///MAIN FUNCTIONS///
 ////////////////////
+let chain =  ethers.utils.formatUnits(ethereum.chainId, 0);
+chain = chainMap[chain].name;
 
-const GAMEMASTER_READ = new ethers.Contract(addresses.GAMEMASTER, abis.GAMEMASTER, provider);
-const GAMEMASTER_WRITE = new ethers.Contract(addresses.GAMEMASTER, abis.GAMEMASTER, signer);
+
+const GAMEMASTER_READ = new ethers.Contract(addresses["GAMEMASTER"][chain], abis.GAMEMASTER, provider);
+const GAMEMASTER_WRITE = new ethers.Contract(addresses["GAMEMASTER"][chain], abis.GAMEMASTER, signer);
 
 
 async function createWarrior(_to, _name, _class) {
@@ -74,7 +77,7 @@ async function fetchWarriors() {
 
 
 
-await drawCard();
+
 
 async function drawCard() {
   let cardURI = await GAMEMASTER_READ.tokenURI(ethers.utils.formatUnits(userWarriors[currentDraw][0], 0));
@@ -134,12 +137,13 @@ let mapEl4 = document.getElementById("town-map4");
 let mapEl5 = document.getElementById("town-map5");
 let mapEl6 = document.getElementById("town-map6");
 let mapEl7 = document.getElementById("town-map7");
-mapEl0.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Training</a>`
+mapEl0.innerHTML += `<a id="tavern-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Tavern</a>`
 mapEl1.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Fight in the Arena!</a>`
 mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Explore</a>`
 mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Quest</a>`
 mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Shop</a>`
 
+document.getElementById("tavern-btn").addEventListener("click", drawCard)
 
 
 function getRandomName() {
