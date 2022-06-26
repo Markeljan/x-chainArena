@@ -32,6 +32,12 @@ body {
 .map-btn {
     margin: 100px 0;
 }
+
+.map-btn2 {
+    margin: 300px 0;
+}
+
+
 .card {
     margin: 0;
     padding: 0;
@@ -45,4 +51,9 @@ body {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
   }
+
+.card-header {
+    font-size: 24px;
+
+}
 

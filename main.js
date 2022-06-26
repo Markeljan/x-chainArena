@@ -107,14 +107,14 @@ let mapEl4 = document.getElementById("town-map4");
 let mapEl5 = document.getElementById("town-map5");
 let mapEl6 = document.getElementById("town-map6");
 let mapEl7 = document.getElementById("town-map7");
-mapEl0.innerHTML += `<a id="mint-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Mint a Warrior!</a>`
-mapEl1.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Fight in the Arena!</a>`
-mapEl2.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
-mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
-mapEl4.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
-mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
-mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
-mapEl7.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
+mapEl0.innerHTML += `<a id="mint-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Mint a Warrior!</a>`
+mapEl1.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Fight in the Arena!</a>`
+mapEl2.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl4.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl7.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
 
 document.getElementById("mint-btn").addEventListener("click", () => {
 createWarrior(account, "Gabe", "warrior")
