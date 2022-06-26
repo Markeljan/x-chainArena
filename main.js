@@ -81,7 +81,7 @@ let cardOBJ = {
 
 let cardEl = document.getElementById("warrior-card");
 cardEl.innerHTML = 
-`<div class="card" style="width: 12rem;">
+`<div class="col card bg-dark p-2 text-dark bg-opacity-75 text-white border-light mb-3" style="width: 14rem;">
 <img class="card-img-top" src="${cardOBJ.image}" alt="Your Mighty Hero">
 <div class="card-body">
   <h5 class="card-text">${cardOBJ.class}</h5>
@@ -90,24 +90,37 @@ cardEl.innerHTML =
   <p class="card-text">- Luck: ${cardOBJ.luck}</p>
   <div class="row">
     <div class="col">
-      <a class="btn btn-primary btn-card">Prev</a>
+      <a class="btn btn-dark btn-card border-light mb-3">Prev</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary btn-card">Next</a>
+      <a class="btn btn-dark btn-card border-light mb-3">Next</a>
     </div>
   </div>
 </div>
 </div>`
 
-let mapEl = document.getElementById("town-map0");
-mapEl.innerHTML += `<a id="mint-btn" class="btn btn-primary map-btn">Mint a Warrior!</a>`
+let mapEl0 = document.getElementById("town-map0");
+let mapEl1 = document.getElementById("town-map1");
+let mapEl2 = document.getElementById("town-map2");
+let mapEl3 = document.getElementById("town-map3");
+let mapEl4 = document.getElementById("town-map4");
+let mapEl5 = document.getElementById("town-map5");
+let mapEl6 = document.getElementById("town-map6");
+let mapEl7 = document.getElementById("town-map7");
+mapEl0.innerHTML += `<a id="mint-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Mint a Warrior!</a>`
+mapEl1.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Fight in the Arena!</a>`
+mapEl2.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
+mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
+mapEl4.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
+mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
+mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
+mapEl7.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white map-btn">Explore?</a>`
 
 document.getElementById("mint-btn").addEventListener("click", () => {
 createWarrior(account, "Gabe", "warrior")
 });
 
 
-mapEl.innerHTML += `<a id="arena-btn" class="btn btn-primary map-btn">Fight in the Arena!</a>`
 
 };
 

@@ -9,10 +9,6 @@ body {
     background-repeat: no-repeat;
 }
 
-.toprowdiv {
-    padding-top: 0px;
-}
-
 .title-text {
     font-family: "Cinzel Decorative";
     text-align: center;
@@ -36,8 +32,17 @@ body {
 .map-btn {
     margin: 100px 0;
 }
-
-#warrior-card {
-    margin-left: 20px;
+.card {
+    margin: 0;
+    padding: 0;
 }
+.col {
+    margin: 0;
+    padding: 0;
+}
+
+.bg-success {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+  }
 
