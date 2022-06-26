@@ -64,13 +64,20 @@ async function createWarrior(_to, _name, _class) {
   await GAMEMASTER_WRITE.createWarrior(_to, _name, _class);
 };
 
-function getRandomName() {
-  let ranIndex = Math.floor(Math.random() * randomNames.length)
-  return randomNames[ranIndex];
+let currentDraw;
+let userWarriors = await fetchWarriors();
+async function fetchWarriors() {
+  let WarriorsArray = await GAMEMASTER_WRITE.fetchWarriors();
+  currentDraw = 0;
+  return WarriorsArray;
 }
 
 
-let cardURI = await GAMEMASTER_READ.tokenURI(0);
+
+await drawCard();
+
+async function drawCard() {
+  let cardURI = await GAMEMASTER_READ.tokenURI(ethers.utils.formatUnits(userWarriors[currentDraw][0], 0));
 let cardData = await
  fetch(cardURI)
   .then(response => response.json())
@@ -94,14 +101,17 @@ cardEl.innerHTML =
   <p class="card-text">- Luck: ${cardOBJ.luck}</p>
   <div class="row">
     <div class="col">
-      <a class="btn btn-dark btn-card border-light mb-3">Prev</a>
+      <a class="btn btn-dark btn-card border-light mb-3" id="prev-btn">Prev</a>
     </div>
     <div class="col">
-      <a class="btn btn-dark btn-card border-light mb-3">Next</a>
+      <a class="btn btn-dark btn-card border-light mb-3" id="next-btn">Next</a>
     </div>
   </div>
 </div>
 </div>`
+
+}
+
 
 let mapEl0 = document.getElementById("town-map0");
 let mapEl1 = document.getElementById("town-map1");
@@ -117,12 +127,34 @@ mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 
 mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
 mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
 
+
+
+function getRandomName() {
+  let ranIndex = Math.floor(Math.random() * randomNames.length)
+  return randomNames[ranIndex];
+}
+
 document.getElementById("mint-warrior").addEventListener("click", () => {
   createWarrior(account, getRandomName(), "warrior")});
 document.getElementById("mint-ranger").addEventListener("click", () => {
   createWarrior(account, getRandomName(), "ranger")});
 document.getElementById("mint-wizard").addEventListener("click", () => {
   createWarrior(account, getRandomName(), "wizard")});
+
+document.getElementById("next-btn").addEventListener("click", () => {
+  if(currentDraw <= userWarriors.length) {
+    console.log(currentDraw, userWarriors.length)
+    currentDraw++;
+    drawCard()
+    console.log(currentDraw)
+  }});
+document.getElementById("prev-btn").addEventListener("click", () => {
+  if(currentDraw >= 0) {
+    currentDraw--;
+    drawCard()
+    console.log(currentDraw)
+  }});
+
 
 
 

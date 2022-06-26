@@ -1,5 +1,5 @@
 addresses = {
-          GAMEMASTER: "0x43A9fEA681b1D6C091eA8a025cb54e62F79B8C3B",
+          GAMEMASTER: "0x766d6F9F49C227Ee01D6EF67b323500Abb579090",
 
 
 }
@@ -284,6 +284,11 @@ abis = {
                     {
                          "components": [
                               {
+                                   "internalType": "uint256",
+                                   "name": "tokenId",
+                                   "type": "uint256"
+                              },
+                              {
                                    "internalType": "string",
                                    "name": "name",
                                    "type": "string"
@@ -476,6 +481,11 @@ abis = {
                ],
                "name": "warriors",
                "outputs": [
+                    {
+                         "internalType": "uint256",
+                         "name": "tokenId",
+                         "type": "uint256"
+                    },
                     {
                          "internalType": "string",
                          "name": "name",
