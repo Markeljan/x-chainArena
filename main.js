@@ -96,9 +96,9 @@ cardEl.innerHTML =
 <img class="card-img-top" src="${cardOBJ.image}" alt="Your Mighty Hero">
 <div class="card-body">
   <h5 class="card-text">${cardOBJ.class}</h5>
-  <p class="card-text">- Vitality: ${cardOBJ.vitality}</p>
-  <p class="card-text">- Attack: ${cardOBJ.attack}</p>
-  <p class="card-text">- Luck: ${cardOBJ.luck}</p>
+  <p class="card-text">Vitality: ${cardOBJ.vitality}</p>
+  <p class="card-text">Attack: ${cardOBJ.attack}</p>
+  <p class="card-text">Luck: ${cardOBJ.luck}</p>
   <div class="row">
     <div class="col">
       <a class="btn btn-dark btn-card border-light mb-3" id="prev-btn">Prev</a>
@@ -134,11 +134,11 @@ let mapEl4 = document.getElementById("town-map4");
 let mapEl5 = document.getElementById("town-map5");
 let mapEl6 = document.getElementById("town-map6");
 let mapEl7 = document.getElementById("town-map7");
-mapEl0.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl0.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Training</a>`
 mapEl1.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Fight in the Arena!</a>`
-mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
-mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
-mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Explore?</a>`
+mapEl3.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn bg-opacity-75 border-light mb-3 text-white">Explore</a>`
+mapEl5.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Quest</a>`
+mapEl6.innerHTML += `<a id="arena-btn" class="btn bg-dark map-btn2 bg-opacity-75 border-light mb-3 text-white">Shop</a>`
 
 
 
